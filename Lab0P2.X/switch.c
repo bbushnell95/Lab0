@@ -7,6 +7,7 @@
 
 #include <xc.h>
 
+
 void initSwitch1(){
-    //TODO: Initialize switch 1
+    TRISDbits.TRISD6 = 
 }

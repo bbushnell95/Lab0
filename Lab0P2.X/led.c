@@ -1,8 +1,8 @@
 /* 
  * File:   led.c
- * Author: gvanhoy
+ * Author: bbushnell
  *
- * Created on August 27, 2015, 3:15 PM
+ * Created on January 27, 2015
  */
 
 #include <xc.h>
@@ -17,30 +17,29 @@ void initLEDs(){
     TRISDbits.TRISD0 = OUTPUT;
     TRISDbits.TRISD1 = OUTPUT;
     TRISDbits.TRISD2 = OUTPUT;
-    
-    LATDbits.LATD0 = ON;
-    LATDbits.LATD1 = OFF;
-    LATDbits.LATD2 = OFF;
-    
+     
+    LED1 = ON;
+    LED2 = OFF;
+    LED3 = OFF;
 }
 
 void turnOnLED(int led){
     
     switch (led){
         case(1):
-            LATDbits.LATD0 = ON;
-            LATDbits.LATD1 = OFF;
-            LATDbits.LATD2 = OFF;
+            LED1 = ON;
+            LED2 = OFF;
+            LED3 = OFF;
             break;
         case(2):
-            LATDbits.LATD0 = OFF;
-            LATDbits.LATD1 = ON;
-            LATDbits.LATD2 = OFF;
+            LED1 = OFF;
+            LED2 = ON;
+            LED3 = OFF;
             break;
         case(3):
-            LATDbits.LATD0 = OFF;
-            LATDbits.LATD1 = OFF;
-            LATDbits.LATD2 = ON;
+            LED1 = OFF;
+            LED2 = OFF;
+            LED3 = ON;
             break;
             
     }
