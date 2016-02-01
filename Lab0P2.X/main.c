@@ -21,24 +21,36 @@ typedef enum stateTypeEnum{
     led1, led2, led3, wait, wait2, debouncePress, debounceRelease, debounceRelease2
 } stateType;
 
-//TODO: Use volatile variables that change within interrupts
+volatile stateType state = led1;
 
 int main() {
     //This function is necessary to use interrupts. 
     enableInterrupts();
     SYSTEMConfigPerformance(10000000);
     //TODO: Write each initialization function
-    //initSwitch1();
+    initSwitch1();
     initLEDs();
     //initTimer2();
-    //turnOnLED(2);
-    //initTimer1();
+    initTimer1();
     
     while(1){
 
-        //TODO: Implement a state machine to create the desired functionality
+        switch(state){
+            case led1:
+                turnOnLED(1);
+            case led2:
+                turnOnLED(2);
+            case led3:
+                turnOnLED(3);
+        }
         
     }
     
     return 0;
+}
+
+void __ISR(_TIMER_1_VECTOR, IPL7SRS) _T1Interrupt(){
+    IFS0bits.T1IF = 0;    //sets the flag down
+    
+
 }
