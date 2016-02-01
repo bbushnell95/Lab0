@@ -8,6 +8,7 @@
 #include <xc.h>
 #include "timer.h"
 #define PRESCALER_256 3
+#define TIMER2_PRESCALER_256 7
 
 void initTimer1(){
     TMR1 = 0;             //keeps count of ticks
@@ -22,10 +23,13 @@ void initTimer1(){
 
 initTimer2(){
     TMR2 = 0;
-    T2CONbits.TCKPS = PRESCALER_256;
+    T2CONbits.TCKPS = 7;
+    IFS0bits.T2IF = 0; 
+    IEC0bits.T2IE = 1;
+    IPC1bits.T1IP = 3;
 }
 
 delayMs(int delay){
-    //TODO: Using timer 2, create a delay
-    // that is delay amount of ms.
+    PR2 = 195;
+    
 }
