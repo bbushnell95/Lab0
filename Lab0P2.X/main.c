@@ -26,7 +26,7 @@ typedef enum stateTypeEnum{
 int main() {
     //This function is necessary to use interrupts. 
     enableInterrupts();
-    
+    SYSTEMConfigPerformance(10000000);
     //TODO: Write each initialization function
     //initSwitch1();
     initLEDs();
