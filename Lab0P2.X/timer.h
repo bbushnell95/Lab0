@@ -10,6 +10,8 @@
 
 
 void initTimer1();
+void startTimer1();
+void endTimer1();
 void initTimer2();
 void delayMs();
 

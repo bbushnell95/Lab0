@@ -1,8 +1,8 @@
 /* 
  * File:   switch.c
- * Author: gvanhoy
+ * Author: Brett Bushnell
  *
- * Created on August 27, 2015, 3:12 PM
+ * Created on February 1, 2016
  */
 
 #include <xc.h>
