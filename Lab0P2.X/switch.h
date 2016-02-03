@@ -12,12 +12,12 @@
 #define INPUT 1
 #define OUTPUT 0
 
-#define PRESSED 1
-#define UNPRESSED 0
+#define PRESSED 0
+#define UNPRESSED 1
 
 #define SW1 PORTDbits.RD6
 
-void initSwitches();
+void initSwitch1();
 
 #endif	/* SWITCH_H */
 

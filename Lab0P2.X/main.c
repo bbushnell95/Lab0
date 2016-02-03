@@ -30,7 +30,7 @@ int main() {
     //TODO: Write each initialization function
     initSwitch1();
     initLEDs();
-    //initTimer2();
+   initTimer2();
     initTimer1();
     
     while(1){
@@ -45,6 +45,22 @@ int main() {
             case led3:
                 turnOnLED(3);
                 break;
+            case debouncePress:
+                delayMs();
+                if(LED1 == 1){
+                    state = led2;
+                }
+                else if (LED2 == 1){
+                    state = led3;
+                }
+                else if (LED3 == 1){
+                    state = led1;
+                }
+                break;
+            case debounceRelease:
+                delayMs();
+                state = state;
+                break;
         }
         
     }
@@ -58,19 +74,17 @@ void __ISR(_TIMER_1_VECTOR, IPL7SRS) _T1Interrupt(){
 
 void __ISR(_CHANGE_NOTICE_VECTOR, IPL7SRS) _CNInterrupt(){
     IFS1bits.CNDIF = 0;
-    int i = PORTD;
+    int i;
+    i = PORTD;
     
-    if(SW1 = PRESSED) {
-        switch(state){
-            case led1:
-                state = led2;
-                break;
-            case led2:
-                state = led3;
-                break;
-            case led3:
-                state = led1;
-                break;
-        }
+    if(SW1 == PRESSED) {
+        state = debouncePress;
     }
+    else {
+        state = debounceRelease;
+    }
+       
 }
+
+
+

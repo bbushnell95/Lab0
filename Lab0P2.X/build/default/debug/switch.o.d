@@ -1,2 +1,3 @@
 build/default/debug/switch.o:  \
-switch.c 
+switch.c  \
+switch.h 

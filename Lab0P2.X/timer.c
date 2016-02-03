@@ -21,15 +21,21 @@ void initTimer1(){
     IPC1bits.T1IP = 7;   //set the priority
 }
 
-initTimer2(){
-    TMR2 = 0;
+void initTimer2(){
     T2CONbits.TCKPS = 7;
-    IFS0bits.T2IF = 0; 
-    IEC0bits.T2IE = 1;
-    IPC1bits.T1IP = 3;
+    IPC2bits.T2IP = 7;
 }
 
-delayMs(int delay){
-    PR2 = 195;
+void delayMs(){
+    TMR2 = 0;
+    PR2 = 1952;
     
+    T2CONbits.TCKPS = TIMER2_PRESCALER_256;
+    IFS0bits.T2IF = 0;
+    T2CONbits.ON = 1;
+    
+    while(!IFS0bits.T2IF){
+        Nop();
+    }
+    IFS0bits.T2IF = 0;
 }
