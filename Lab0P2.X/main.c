@@ -7,8 +7,8 @@
 
 #include <xc.h>
 #include <sys/attribs.h>
-//#include "switch.h"
-//#include "timer.h"
+#include "switch.h"
+#include "timer.h"
 #include "led.h"
 #include "interrupt.h"
 #include "config.h"
@@ -38,10 +38,13 @@ int main() {
         switch(state){
             case led1:
                 turnOnLED(1);
+                break;
             case led2:
                 turnOnLED(2);
+                break;
             case led3:
                 turnOnLED(3);
+                break;
         }
         
     }
@@ -51,6 +54,23 @@ int main() {
 
 void __ISR(_TIMER_1_VECTOR, IPL7SRS) _T1Interrupt(){
     IFS0bits.T1IF = 0;    //sets the flag down
-    
+}
 
+void __ISR(_CHANGE_NOTICE_VECTOR, IPL7SRS) _CNInterrupt(){
+    IFS1bits.CNDIF = 0;
+    int i = PORTD;
+    
+    if(SW1 = PRESSED) {
+        switch(state){
+            case led1:
+                state = led2;
+                break;
+            case led2:
+                state = led3;
+                break;
+            case led3:
+                state = led1;
+                break;
+        }
+    }
 }
