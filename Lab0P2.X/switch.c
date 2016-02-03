@@ -8,16 +8,19 @@
 #include <xc.h>
 #include "switch.h"
 
+#define ENABLED 1
+#define DISABLED 0
 
+#define PRIORITY_7 7
 
 
 
 void initSwitch1(){
     TRISDbits.TRISD6 = INPUT;
-    CNCONDbits.ON = 1;
-    CNENDbits.CNIED6 = 1;
-    IEC1bits.CNDIE = 1;
-    IFS1bits.CNDIF = 0;   //putting down the flag
-    CNPUDbits.CNPUD6 = 1;  //Enables pull up resistor
-    IPC8bits.CNIP = 7;
+    CNCONDbits.ON = ENABLED;    //CN device
+    CNENDbits.CNIED6 = ENABLED; //CN interrupt for pin
+    IEC1bits.CNDIE = ENABLED;   //Overall CN Interrupt
+    IFS1bits.CNDIF = 0;   
+    CNPUDbits.CNPUD6 = ENABLED;  //Pull-up resistor
+    IPC8bits.CNIP = PRIORITY_7;  
 }

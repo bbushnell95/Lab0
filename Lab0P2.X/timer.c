@@ -37,14 +37,14 @@ void initTimer2(){
 
 void delayMs(){
     TMR2 = 0;
-    PR2 = 1952;
+    PR2 = 1952;   //50 ms
     
     T2CONbits.TCKPS = TIMER2_PRESCALER_256;
     IFS0bits.T2IF = 0;
     T2CONbits.ON = 1;
     
     while(!IFS0bits.T2IF){
-        Nop();
+        Nop();            //no operation
     }
     IFS0bits.T2IF = 0;
 }
