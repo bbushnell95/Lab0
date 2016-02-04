@@ -43,8 +43,7 @@ void delayMs(){
     IFS0bits.T2IF = 0;
     T2CONbits.ON = 1;
     
-    while(!IFS0bits.T2IF){
-        Nop();            //no operation
+    while(TMR2 != PR2){
     }
     IFS0bits.T2IF = 0;
 }
